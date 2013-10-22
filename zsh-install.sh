@@ -21,7 +21,7 @@ ln -s $(pwd)/zsh/zshrc ~/.zshrc
 git submodule init
 git submodule update
 
-stow --target=~/ vim
+stow --target=$HOME vim
 
 cd ~/.vim/bundle/command-t/ruby/command-t
 ruby extconf.rb
