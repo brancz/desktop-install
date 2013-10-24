@@ -13,7 +13,7 @@ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | 
 curl -L https://raw.github.com/maksimr/dotfiles/master/gnome-terminal-themes/molokai.sh | sh
 
 cd
-git clone https://github.com/flopska/dotfiles.git
+git clone https://github.com/FlopsKa/dotfiles.git
 cd ~/dotfiles
 ln -s $(pwd)/zsh/flopska.zsh-theme ~/.oh-my-zsh/themes/flopska.zsh-theme
 ln -s $(pwd)/zsh/zshrc ~/.zshrc
