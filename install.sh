@@ -3,7 +3,7 @@
 # this sucks but the only way i found that i could execute something 
 # as the user and something as root
 sudo echo essential things 
-sudo apt-get install -qq -y build-essential checkinstall curl wget git
+sudo apt-get install -qq -y build-essential checkinstall curl wget git xclip tree
 
 echo Instant Messaging
 sudo apt-get install -qq -y irssi
@@ -30,7 +30,7 @@ sudo apt-get install -qq -y keepassx firefox
 # user: <user>@pondati.net
 # pass: <pass>
 
-## SMAP
+## SMTP
 # host: smtp.pondati.net
 # port: 587
 # security: STARTTLS
