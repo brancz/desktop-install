@@ -5,6 +5,9 @@
 sudo echo essential things 
 sudo apt-get install -qq -y build-essential checkinstall curl wget git xclip tree
 
+echo VPN
+sudo apt-get install -qq -y network-manager-openvpn
+
 echo Instant Messaging
 sudo apt-get install -qq -y irssi
 
