@@ -3,7 +3,7 @@
 # this sucks but the only way i found that i could execute something 
 # as the user and something as root
 sudo echo essential things 
-sudo apt-get install -qq -y build-essential checkinstall curl wget git xclip tree
+sudo apt-get install -qq -y build-essential checkinstall curl wget git xclip tree gparted
 
 echo VPN
 sudo apt-get install -qq -y network-manager-openvpn
