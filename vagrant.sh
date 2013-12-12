@@ -1,7 +1,7 @@
 #!/bin/sh
 
-LATEST_VAGRANT_32="http://files.vagrantup.com/packages/a40522f5fabccb9ddabad03d836e120ff5d14093/vagrant_1.3.5_i686.deb"
-LATEST_VAGRANT_64="http://files.vagrantup.com/packages/a40522f5fabccb9ddabad03d836e120ff5d14093/vagrant_1.3.5_x86_64.deb"
+LATEST_VAGRANT_32="https://dl.bintray.com/mitchellh/vagrant/vagrant_1.4.0_i686.deb"
+LATEST_VAGRANT_64="https://dl.bintray.com/mitchellh/vagrant/vagrant_1.4.0_x86_64.deb"
 
 ## Vagrant
 sudo apt-get install -y wget dpkg virtualbox
