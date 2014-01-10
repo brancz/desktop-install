@@ -3,7 +3,7 @@
 # this sucks but the only way i found that i could execute something 
 # as the user and something as root
 sudo echo essential things 
-sudo apt-get install -qq -y build-essential checkinstall curl wget git xclip tree gparted nfs-common portmap
+sudo apt-get install -qq -y build-essential checkinstall curl wget git xclip tree gparted nfs-common portmap pavucontrol
 
 echo VPN
 sudo apt-get install -qq -y network-manager-openvpn
@@ -22,6 +22,9 @@ sudo apt-get install -qq -y libxvidcore4 gstreamer0.10-plugins-base gstreamer0.1
 
 echo musicplayer
 sudo apt-get install -qq -y gmusicbrowser
+
+echo desktop recording tool
+sudo apt-get install -qq -y gtk-recordmydesktop
 
 echo various
 sudo apt-get install -qq -y keepassx firefox
