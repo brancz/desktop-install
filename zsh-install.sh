@@ -12,7 +12,7 @@ sudo make install
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 curl -L https://raw.github.com/maksimr/dotfiles/master/gnome-terminal-themes/molokai.sh | sh
 
-cd
+rm ~/.zshrc
 git clone https://github.com/FlopsKa/dotfiles.git
 cd ~/dotfiles
 ln -s $(pwd)/zsh/flopska.zsh-theme ~/.oh-my-zsh/themes/flopska.zsh-theme
