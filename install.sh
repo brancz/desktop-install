@@ -6,7 +6,7 @@ sudo echo essential things
 sudo apt-get install -qq -y build-essential checkinstall curl wget git xclip tree gparted nfs-common portmap pavucontrol screen
 
 echo VPN
-sudo apt-get install -qq -y network-manager-openvpn
+sudo apt-get install -qq -y network-manager-openvpn network-manager-pptp network-manager-vpnc
 
 echo Instant Messaging
 sudo apt-get install -qq -y irssi
