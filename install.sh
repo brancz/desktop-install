@@ -1,48 +1,164 @@
-#!/bin/sh
+#!/bin/bash
 
-# this sucks but the only way i found that i could execute something 
-# as the user and something as root
-sudo echo essential things 
-sudo apt-get install -qq -y build-essential checkinstall curl wget git xclip tree gparted nfs-common portmap pavucontrol screen
+bold=`tput bold`
+normal=`tput sgr0`
 
-echo VPN
-sudo apt-get install -qq -y network-manager-openvpn network-manager-pptp network-manager-vpnc
+function echo_headline {
+	size=${#1}
+	v=$(printf "%-${size}s" "=")
+	echo "${v// /=}"
+	echo "${bold}$1${normal}"
+	echo "${v// /=}"
+}
 
-echo Instant Messaging
-sudo apt-get install -qq -y irssi
+function echo_bold {
+	echo "${bold}$1${normal}"
+}
 
-echo java
-sudo apt-get install -qq -y openjdk-7* icedtea-plugin
+if [[ $USER != "root" ]]; then
+	echo "You need to run this as root."
+	exit 1
+fi
 
-echo all that crappy non open source stuff
-sudo apt-get install -qq -y ubuntu-restricted-extras
+homedir=`eval echo ~$SUDO_USER`
 
-echo codecs
-sudo apt-get install -qq -y libxvidcore4 gstreamer0.10-plugins-base gstreamer0.10-plugins-good gstreamer0.10-plugins-ugly gstreamer0.10-plugins-bad gstreamer0.10-plugins-bad-multiverse gstreamer0.10-ffmpeg gstreamer0.10-alsa gstreamer0.10-fluendo-mp3
+distrochoice=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 7 \
+essentials "Essentials" off \
+rails "Rails" off \
+ansible "Ansible" off \
+vagrant "Vagrant" off \
+dotfiles "Vim, Zsh, Dotfiles" off \
+fixubuntu "Fix ubuntu" off \
+heroku-toolbelt "Heroku Toolbelt" off 3>&1 1>&2 2>&3)
 
-echo musicplayer
-sudo apt-get install -qq -y gmusicbrowser
+exitstatus=$?
+if [ $exitstatus = 0 ]; then
 
-echo desktop recording tool
-sudo apt-get install -qq -y gtk-recordmydesktop
+	if [[ ${distrochoice[@]} =~ "essentials" ]]
+	then
+		echo_headline "INSTALLING ESSENTIALS"
 
-echo various
-sudo apt-get install -qq -y keepassx firefox
+		echo_bold "update apt cache"
+		apt-get update
 
-###Email Setup
+		echo_bold "install basic stuff"
+		apt-get install -q -y build-essential checkinstall curl wget git xclip tree gparted nfs-common portmap pavucontrol screen
 
-## IMAP
-# host: imap.pondati.net
-# port: 143
-# security: STARTTLS
-# auth-method: normal password
-# user: <user>@pondati.net
-# pass: <pass>
+		echo_bold "install network manager vpn plugins"
+		apt-get install -q -y network-manager-openvpn network-manager-pptp network-manager-vpnc
 
-## SMTP
-# host: smtp.pondati.net
-# port: 587
-# security: STARTTLS
-# auth-method: normal password
-# user: <user>@pondati.net
-# pass: <pass>
+		echo_bold "install instant messanger"
+		apt-get install -q -y irssi
+
+		echo_bold "make sure firefox is install"
+		apt-get install -q -y firefox
+
+		echo_bold "install java"
+		apt-get install -q -y openjdk-7* icedtea-plugin
+
+		echo_bold "install flash, ms fonts, etc"
+		apt-get install -q -y ubuntu-restricted-extras
+
+		echo_bold "install codecs"
+		apt-get install -q -y libxvidcore4 gstreamer0.10-plugins-base gstreamer0.10-plugins-good gstreamer0.10-plugins-ugly gstreamer0.10-plugins-bad gstreamer0.10-plugins-bad-multiverse gstreamer0.10-ffmpeg gstreamer0.10-alsa gstreamer0.10-fluendo-mp3
+
+		echo_bold "install musicplayer"
+		apt-get install -q -y gmusicbrowser
+
+		echo_bold "install desktop recording tool"
+		apt-get install -q -y gtk-recordmydesktop
+
+		echo_bold "install password depot: keepassx"
+		apt-get install -q -y keepassx
+	fi
+	
+	if [[ ${distrochoice[@]} =~ "rails" ]]
+	then
+		echo_headline "INSTALLING RAILS"
+
+		apt-get -y install gawk libgdbm-dev pkg-config libffi-dev build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf libc6-dev libncurses5-dev automake libtool bison subversion python postgresql postgresql-contrib libpq-dev nodejs
+		curl -L https://get.rvm.io | sudo -u "${SUDO_USER}" -H bash -s stable --rails
+		su -l "${SUDO_USER}" -c "source \"${homedir}/.rvm/scripts/rvm\""
+	fi
+	
+	if [[ ${distrochoice[@]} =~ "ansible" ]]
+	then
+		echo_headline "INSTALLING ANSIBLE"
+
+		echo_bold "add required repository"
+		add-apt-repository -y ppa:rquillo/ansible
+
+		echo_bold "update apt cache"
+		apt-get update	-q -y
+
+		echo_bold "install ansible"
+		apt-get install -q -y ansible
+	fi
+	
+	if [[ ${distrochoice[@]} =~ "vagrant" ]]
+	then
+		echo_headline "INSTALLING VAGRANT"
+
+		LATEST_VAGRANT_32="https://dl.bintray.com/mitchellh/vagrant/vagrant_1.4.3_i686.deb"
+		LATEST_VAGRANT_64="https://dl.bintray.com/mitchellh/vagrant/vagrant_1.4.3_x86_64.deb"
+
+		## Vagrant
+		apt-get install -y wget dpkg virtualbox
+		URL="$LATEST_VAGRANT_64"
+		ARCHITECTURE=`uname -m`
+		if [ "$ARCHITECTURE" != "x86_64" ]; then
+			URL=$LATEST_VAGRANT_32
+		fi
+		FILE="/tmp/vagrant.deb"; 
+		wget "$URL" -O $FILE && dpkg -i $FILE; 
+		rm $FILE
+	fi
+
+	if [[ ${distrochoice[@]} =~ "dotfiles" ]]
+	then
+		echo_headline "INSTALLING VIM, ZSH, AND DOTFILES"
+
+		apt-get install -q -y stow zsh libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev mercurial ruby1.9.1 ruby1.9.1-dev git build-essential
+
+		hg clone https://vim.googlecode.com/hg/ /tmp/vim
+		(cd /tmp/vim/src; ./configure --with-features=huge --enable-gui=gnome2 --enable-rubyinterp)
+		make -C /tmp/vim/src
+		make -C /tmp/vim/src install
+		rm -rf /tmp/vim
+
+		curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sudo -u "${SUDO_USER}" -H sh
+		curl -L https://raw.github.com/maksimr/dotfiles/master/gnome-terminal-themes/molokai.sh | sudo -u "${SUDO_USER}" -H sh
+
+		rm "${homedir}/.zshrc"
+		sudo -u "${SUDO_USER}" -H git clone https://github.com/FlopsKa/dotfiles.git "${homedir}/dotfiles"
+		ln -s "${homedir}/dotfiles/zsh/flopska.zsh-theme" "${homedir}/.oh-my-zsh/themes/flopska.zsh-theme"
+		ln -s "${homedir}/dotfiles/zsh/zshrc" "${homedir}/.zshrc"
+
+		git --git-dir "${homedir}/dotfiles/.git" submodule init
+		git --git-dir "${homedir}/dotfiles/.git" submodule update
+
+		stow --target=$homedir vim
+
+		ruby "${homedir}/.vim/bundle/command-t/ruby/command-t/extconf.rb"
+		make -C "${homedir}/.vim/bundle/command-t/ruby/command-t"
+
+		chsh $SUDO_USER -s /bin/zsh
+	fi
+
+	if [[ ${distrochoice[@]} =~ "fixubuntu" ]]
+	then
+		echo_headline "FIXING UBUNTU"
+
+		wget -qO- https://raw2.github.com/micahflee/fixubuntu/master/fixubuntu.sh | sudo -u "${SUDO_USER}" -H sh
+	fi
+
+	if [[ ${distrochoice[@]} =~ "heroku-toolbelt" ]]
+	then
+		echo_headline "INSTALLING HEROKU-TOOLBELT"
+
+		wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+	fi
+
+else
+	echo "User selected cancel"
+fi
