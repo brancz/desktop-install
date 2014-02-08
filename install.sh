@@ -50,7 +50,7 @@ if [ $exitstatus = 0 ]; then
 		echo_bold "install instant messanger"
 		apt-get install -q -y irssi
 
-		echo_bold "make sure firefox is install"
+		echo_bold "make sure firefox is installed"
 		apt-get install -q -y firefox
 
 		echo_bold "install java"
