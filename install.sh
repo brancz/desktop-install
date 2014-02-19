@@ -134,10 +134,13 @@ if [ $exitstatus = 0 ]; then
 		ln -s "${homedir}/dotfiles/zsh/flopska.zsh-theme" "${homedir}/.oh-my-zsh/themes/flopska.zsh-theme"
 		ln -s "${homedir}/dotfiles/zsh/zshrc" "${homedir}/.zshrc"
 
-		git --git-dir "${homedir}/dotfiles/.git" submodule init
-		git --git-dir "${homedir}/dotfiles/.git" submodule update
+		(
+		cd ${homedir}/dotfiles
+		git submodule init
+		git submodule update
 
 		stow --target=$homedir vim
+		)
 
 		ruby "${homedir}/.vim/bundle/command-t/ruby/command-t/extconf.rb"
 		make -C "${homedir}/.vim/bundle/command-t/ruby/command-t"
