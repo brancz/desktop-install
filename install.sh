@@ -22,7 +22,7 @@ fi
 
 homedir=`eval echo ~$SUDO_USER`
 
-distrochoice=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 7 \
+distrochoice=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 8 \
 essentials "Essentials" off \
 rails "Rails" off \
 ansible "Ansible" off \
