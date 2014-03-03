@@ -20,6 +20,8 @@ This includes:
 
 * [heroku-toolbelt](https://toolbelt.heroku.com/debian)
 
+* [nodejs, npm, karma](http://nodejs.org/)
+
 Install instructions
 --------------------
 

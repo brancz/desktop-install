@@ -29,7 +29,8 @@ ansible "Ansible" off \
 vagrant "Vagrant" off \
 dotfiles "Vim, Zsh, Dotfiles" off \
 fixubuntu "Fix ubuntu" off \
-heroku-toolbelt "Heroku Toolbelt" off 3>&1 1>&2 2>&3)
+heroku-toolbelt "Heroku Toolbelt" off \
+nodejs "node.js, npm, karma" off 3>&1 1>&2 2>&3)
 
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
@@ -160,6 +161,19 @@ if [ $exitstatus = 0 ]; then
 		echo_headline "INSTALLING HEROKU-TOOLBELT"
 
 		wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+	fi
+
+	if [[ ${distrochoice[@]} =~ "nodejs" ]]
+	then
+		echo_headline "INSTALLING NODE.JS"
+
+		apt-get install python-software-properties
+		apt-add-repository ppa:chris-lea/node.js
+		apt-get update
+		apt-get install nodejs
+		apt-get install npm
+		npm install -g karma
+		ln -s /usr/bin/nodejs /usr/bin/node
 	fi
 
 else
