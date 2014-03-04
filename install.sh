@@ -77,7 +77,7 @@ if [ $exitstatus = 0 ]; then
 	then
 		echo_headline "INSTALLING RAILS"
 
-		apt-get -y install gawk libgdbm-dev pkg-config libffi-dev build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf libc6-dev libncurses5-dev automake libtool bison subversion python postgresql postgresql-contrib libpq-dev nodejs
+		apt-get -y install gawk libgdbm-dev pkg-config libffi-dev build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf libc6-dev libncurses5-dev automake libtool bison subversion python postgresql postgresql-contrib libpq-dev
 		curl -L https://get.rvm.io | sudo -u "${SUDO_USER}" -H bash -s stable --rails
 		su -l "${SUDO_USER}" -c "source \"${homedir}/.rvm/scripts/rvm\""
 	fi
@@ -168,12 +168,12 @@ if [ $exitstatus = 0 ]; then
 		echo_headline "INSTALLING NODE.JS"
 
 		apt-get install python-software-properties
-		apt-add-repository ppa:chris-lea/node.js
-		apt-get update
-		apt-get install nodejs
-		apt-get install npm
+		apt-add-repository -y ppa:chris-lea/node.js
+		apt-get update -q -y
+		apt-get install nodejs -q -y
+		apt-get install npm -q -y
 		npm install -g karma
-		ln -s /usr/bin/nodejs /usr/bin/node
+		ln -s /usr/bin/nodejs /usr/bin/node &>/dev/null
 	fi
 
 else
