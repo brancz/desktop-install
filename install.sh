@@ -23,14 +23,14 @@ fi
 homedir=`eval echo ~$SUDO_USER`
 
 distrochoice=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 8 \
-essentials "Essentials" off \
-rails "Rails" off \
-ansible "Ansible" off \
-vagrant "Vagrant" off \
-dotfiles "Vim, Zsh, Dotfiles" off \
-fixubuntu "Fix ubuntu" off \
-heroku-toolbelt "Heroku Toolbelt" off \
-nodejs "node.js, npm, karma" off 3>&1 1>&2 2>&3)
+essentials "Essentials" on \
+rails "Rails" on \
+ansible "Ansible" on \
+vagrant "Vagrant" on \
+dotfiles "Vim, Zsh, Dotfiles" on \
+fixubuntu "Fix ubuntu" on \
+heroku-toolbelt "Heroku Toolbelt" on \
+nodejs "node.js, npm, karma" on 3>&1 1>&2 2>&3)
 
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
