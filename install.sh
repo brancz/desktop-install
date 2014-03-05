@@ -177,5 +177,5 @@ if [ $exitstatus = 0 ]; then
 	fi
 
 else
-	echo "User selected cancel"
+	echo "Cancelled."
 fi
