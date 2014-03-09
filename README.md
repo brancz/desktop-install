@@ -27,7 +27,7 @@ Install instructions
 
 To run the script just run:
 
-	wget -qO- https://raw2.github.com/flower-pot/desktop-install/master/install.sh | sudo bash
+	wget -qO- https://raw.github.com/flower-pot/desktop-install/master/install.sh | sudo bash
 
 _I have only tested it on Ubuntu, but I can imagine most of it should work
 on anything debian based._
