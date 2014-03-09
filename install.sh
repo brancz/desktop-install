@@ -146,8 +146,11 @@ if [ $exitstatus = 0 ]; then
 		stow --target=$homedir vim
 		)
 
-		ruby "${homedir}/.vim/bundle/command-t/ruby/command-t/extconf.rb"
-		make -C "${homedir}/.vim/bundle/command-t/ruby/command-t"
+    (
+    cd ${homedir}/.vim/bundle/command-t/ruby/command-t/
+		ruby extconf.rb
+		make
+    )
 
 		chsh $SUDO_USER -s /bin/zsh
 	fi
