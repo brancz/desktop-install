@@ -148,8 +148,8 @@ if [ $exitstatus = 0 ]; then
 
     (
     cd ${homedir}/.vim/bundle/command-t/ruby/command-t/
-		ruby extconf.rb
-		make
+		sudo ruby extconf.rb
+		sudo make
     )
 
 		chsh $SUDO_USER -s /bin/zsh
