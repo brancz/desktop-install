@@ -119,6 +119,9 @@ if [ $exitstatus = 0 ]; then
 	then
 		echo_headline "INSTALLING VIM, ZSH, AND DOTFILES"
 
+		echo_bold "update apt cache"
+		apt-get update
+
 		apt-get install -q -y stow zsh libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev mercurial ruby1.9.1 ruby1.9.1-dev git build-essential curl
 
 		hg clone https://vim.googlecode.com/hg/ /tmp/vim
