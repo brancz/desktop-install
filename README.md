@@ -33,3 +33,8 @@ _I have only tested it on Ubuntu, but I can imagine most of it should work
 on anything debian based._
 
 That's it, have fun! :)
+
+TODO
+----
+
+- Capability to use script headless with parameters
