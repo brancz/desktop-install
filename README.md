@@ -29,12 +29,6 @@ To run the script just run:
 
 	wget -qO- https://raw.github.com/flower-pot/desktop-install/master/install.sh | sudo bash
 
-_I have only tested it on Ubuntu, but I can imagine most of it should work
-on anything debian based._
+_To use the script in silent mode add -s at the end._
 
 That's it, have fun! :)
-
-TODO
-----
-
-- Capability to use script headless with parameters
