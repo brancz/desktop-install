@@ -1,8 +1,5 @@
 #!/bin/bash
 
-bold=`tput bold`
-normal=`tput sgr0`
-
 function echo_headline {
   size=${#1}
   v=$(printf "%-${size}s" "=")
@@ -15,33 +12,9 @@ function echo_bold {
   echo "${bold}$1${normal}"
 }
 
-if [[ $USER != "root" ]]; then
-  echo "You need to run this as root."
-  exit 1
-fi
-
-homedir=`eval echo ~$SUDO_USER`
-
-selected_items=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 8 \
-essentials "Essentials" on \
-rails "Rails" on \
-ansible "Ansible" on \
-vagrant "Vagrant" on \
-dotfiles "Vim, Zsh, Dotfiles" on \
-fixubuntu "Fix ubuntu" on \
-heroku-toolbelt "Heroku Toolbelt" on \
-nodejs "node.js, npm, karma" on 3>&1 1>&2 2>&3)
-
-exitstatus=$?
-if [ $exitstatus = 0 ]; then
-  install_selected selected_items
-else
-  echo "Cancelled."
-fi
-
 function install_selected() {
 
-  selected_items = $1
+  selected_items=$1
 
   if [[ ${selected_items[@]} =~ "essentials" ]]
   then
@@ -190,3 +163,53 @@ function install_selected() {
     ln -s /usr/bin/nodejs /usr/bin/node &>/dev/null
   fi
 }
+
+function usage {
+    echo "usage: install script [[-i] | [-h]]"
+}
+
+bold=`tput bold`
+normal=`tput sgr0`
+
+if [[ $USER != "root" ]]; then
+  echo "You need to run this as root."
+  exit 1
+fi
+
+homedir=`eval echo ~$SUDO_USER`
+
+silent=
+while [ "$1" != "" ]; do
+    case $1 in
+        -s | --silent )         silent=1
+                                ;;
+        -h | --help )           usage
+                                exit
+                                ;;
+        * )                     usage
+                                exit 1
+    esac
+    shift
+done
+
+if [ "$silent" = "1" ]; then
+  selected_items=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 8 \
+  essentials "Essentials" on \
+  rails "Rails" on \
+  ansible "Ansible" on \
+  vagrant "Vagrant" on \
+  dotfiles "Vim, Zsh, Dotfiles" on \
+  fixubuntu "Fix ubuntu" on \
+  heroku-toolbelt "Heroku Toolbelt" on \
+  nodejs "node.js, npm, karma" on 3>&1 1>&2 2>&3)
+
+  exitstatus=$?
+  if [ $exitstatus = 0 ]; then
+    install_selected selected_items
+  else
+    echo "Cancelled."
+  fi
+else
+  echo_headline "Silent Mode"
+  install_selected "essentials rails ansible vagrant dotfiles fixubuntu heroku-toolbelt nodejs"
+fi
