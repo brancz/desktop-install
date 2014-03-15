@@ -22,7 +22,7 @@ fi
 
 homedir=`eval echo ~$SUDO_USER`
 
-distrochoice=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 8 \
+selected_items=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 8 \
 essentials "Essentials" on \
 rails "Rails" on \
 ansible "Ansible" on \
@@ -34,16 +34,16 @@ nodejs "node.js, npm, karma" on 3>&1 1>&2 2>&3)
 
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
-  install_selected distrochoice
+  install_selected selected_items
 else
   echo "Cancelled."
 fi
 
 function install_selected() {
 
-  distrochoice = $1
+  selected_items = $1
 
-  if [[ ${distrochoice[@]} =~ "essentials" ]]
+  if [[ ${selected_items[@]} =~ "essentials" ]]
   then
     echo_headline "INSTALLING ESSENTIALS"
 
@@ -81,7 +81,7 @@ function install_selected() {
     apt-get install -q -y keepassx
   fi
   
-  if [[ ${distrochoice[@]} =~ "rails" ]]
+  if [[ ${selected_items[@]} =~ "rails" ]]
   then
     echo_headline "INSTALLING RAILS"
 
@@ -90,7 +90,7 @@ function install_selected() {
     su -l "${SUDO_USER}" -c "source \"${homedir}/.rvm/scripts/rvm\""
   fi
   
-  if [[ ${distrochoice[@]} =~ "ansible" ]]
+  if [[ ${selected_items[@]} =~ "ansible" ]]
   then
     echo_headline "INSTALLING ANSIBLE"
 
@@ -104,7 +104,7 @@ function install_selected() {
     apt-get install -q -y ansible
   fi
   
-  if [[ ${distrochoice[@]} =~ "vagrant" ]]
+  if [[ ${selected_items[@]} =~ "vagrant" ]]
   then
     echo_headline "INSTALLING VAGRANT"
 
@@ -123,7 +123,7 @@ function install_selected() {
     rm $FILE
   fi
 
-  if [[ ${distrochoice[@]} =~ "dotfiles" ]]
+  if [[ ${selected_items[@]} =~ "dotfiles" ]]
   then
     echo_headline "INSTALLING VIM, ZSH, AND DOTFILES"
 
@@ -163,21 +163,21 @@ function install_selected() {
     chsh $SUDO_USER -s /bin/zsh
   fi
 
-  if [[ ${distrochoice[@]} =~ "fixubuntu" ]]
+  if [[ ${selected_items[@]} =~ "fixubuntu" ]]
   then
     echo_headline "FIXING UBUNTU"
 
     wget -qO- https://raw2.github.com/micahflee/fixubuntu/master/fixubuntu.sh | sudo -u "${SUDO_USER}" -H sh
   fi
 
-  if [[ ${distrochoice[@]} =~ "heroku-toolbelt" ]]
+  if [[ ${selected_items[@]} =~ "heroku-toolbelt" ]]
   then
     echo_headline "INSTALLING HEROKU-TOOLBELT"
 
     wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
   fi
 
-  if [[ ${distrochoice[@]} =~ "nodejs" ]]
+  if [[ ${selected_items[@]} =~ "nodejs" ]]
   then
     echo_headline "INSTALLING NODE.JS"
 
