@@ -34,6 +34,14 @@ nodejs "node.js, npm, karma" on 3>&1 1>&2 2>&3)
 
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
+  install_selected distrochoice
+else
+  echo "Cancelled."
+fi
+
+function install_selected() {
+
+  distrochoice = $1
 
   if [[ ${distrochoice[@]} =~ "essentials" ]]
   then
@@ -181,7 +189,4 @@ if [ $exitstatus = 0 ]; then
     npm install -g karma
     ln -s /usr/bin/nodejs /usr/bin/node &>/dev/null
   fi
-
-else
-  echo "Cancelled."
-fi
+}
