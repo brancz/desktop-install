@@ -165,7 +165,7 @@ function install_selected() {
 }
 
 function usage {
-    echo "usage: install script [[-i] | [-h]]"
+    echo "usage: install script [[-s] | [-h]]"
 }
 
 bold=`tput bold`
