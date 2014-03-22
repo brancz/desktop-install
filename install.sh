@@ -193,6 +193,9 @@ while [ "$1" != "" ]; do
 done
 
 if [ "$silent" = "1" ]; then
+  echo_headline "Silent Mode"
+  install_selected "essentials rails ansible vagrant dotfiles fixubuntu heroku-toolbelt nodejs"
+else
   selected_items=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 8 \
   essentials "Essentials" on \
   rails "Rails" on \
@@ -209,7 +212,4 @@ if [ "$silent" = "1" ]; then
   else
     echo "Cancelled."
   fi
-else
-  echo_headline "Silent Mode"
-  install_selected "essentials rails ansible vagrant dotfiles fixubuntu heroku-toolbelt nodejs"
 fi
