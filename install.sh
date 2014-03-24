@@ -58,7 +58,7 @@ function install_selected() {
   then
     echo_headline "INSTALLING RAILS"
 
-    apt-get -y install gawk libgdbm-dev pkg-config libffi-dev build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf libc6-dev libncurses5-dev automake libtool bison subversion python postgresql postgresql-contrib libpq-dev
+    apt-get -y install gawk libgdbm-dev pkg-config libffi-dev build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf libc6-dev libncurses5-dev automake libtool bison subversion python postgresql postgresql-contrib libpq-dev redis-server
     curl -L https://get.rvm.io | sudo -u "${SUDO_USER}" -H bash -s stable --rails
     su -l "${SUDO_USER}" -c "source \"${homedir}/.rvm/scripts/rvm\""
   fi
