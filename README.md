@@ -29,6 +29,8 @@ To run the script just run:
 
 	wget -qO- https://raw.github.com/flower-pot/desktop-install/master/install.sh | sudo bash
 
-_To use the script in silent mode add -s at the end._
+To use the script in silent mode use this command. (silent mode installs everything)
+
+	wget -qO- https://raw.github.com/flower-pot/desktop-install/master/install.sh | sudo bash -s -- --silent
 
 That's it, have fun! :)
