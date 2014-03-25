@@ -181,13 +181,10 @@ homedir=`eval echo ~$SUDO_USER`
 silent=
 while [ "$1" != "" ]; do
     case $1 in
-        -s | --silent )         silent=1
+        ( -s | --silent )       silent=1
                                 ;;
-        -h | --help )           usage
+        ( -h | --help )         usage
                                 exit
-                                ;;
-        * )                     usage
-                                exit 1
     esac
     shift
 done
