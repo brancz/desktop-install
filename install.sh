@@ -24,7 +24,7 @@ function install_selected() {
     apt-get update
 
     echo_bold "install basic stuff"
-    apt-get install -q -y build-essential checkinstall curl wget git xclip tree gparted nfs-common portmap pavucontrol screen
+    apt-get install -q -y build-essential checkinstall curl git xclip tree gparted nfs-common portmap pavucontrol screen
 
     echo_bold "install network manager vpn plugins"
     apt-get install -q -y network-manager-openvpn network-manager-pptp network-manager-vpnc
@@ -85,7 +85,7 @@ function install_selected() {
     LATEST_VAGRANT_64="https://dl.bintray.com/mitchellh/vagrant/vagrant_1.5.0_x86_64.deb"
 
     ## Vagrant
-    apt-get install -y wget dpkg virtualbox
+    apt-get install -y dpkg virtualbox
     URL="$LATEST_VAGRANT_64"
     ARCHITECTURE=`uname -m`
     if [ "$ARCHITECTURE" != "x86_64" ]; then
