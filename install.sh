@@ -38,9 +38,6 @@ function install_selected() {
     echo_bold "install java"
     apt-get install -q -y openjdk-7* icedtea-plugin
 
-    echo_bold "install flash, ms fonts, etc"
-    apt-get install -q -y ubuntu-restricted-extras
-
     echo_bold "install codecs"
     apt-get install -q -y libxvidcore4 gstreamer0.10-plugins-base gstreamer0.10-plugins-good gstreamer0.10-plugins-ugly gstreamer0.10-plugins-bad gstreamer0.10-plugins-bad-multiverse gstreamer0.10-ffmpeg gstreamer0.10-alsa gstreamer0.10-fluendo-mp3
 
