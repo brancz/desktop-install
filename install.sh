@@ -202,7 +202,7 @@ else
 
   exitstatus=$?
   if [ $exitstatus = 0 ]; then
-    install_selected $selected_items
+    install_selected "$selected_items"
   else
     echo "Cancelled."
   fi
