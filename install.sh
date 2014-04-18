@@ -78,8 +78,8 @@ function install_selected() {
   then
     echo_headline "INSTALLING VAGRANT"
 
-    LATEST_VAGRANT_32="https://dl.bintray.com/mitchellh/vagrant/vagrant_1.5.0_i686.deb"
-    LATEST_VAGRANT_64="https://dl.bintray.com/mitchellh/vagrant/vagrant_1.5.0_x86_64.deb"
+    LATEST_VAGRANT_32="https://dl.bintray.com/mitchellh/vagrant/vagrant_1.5.3_i686.deb"
+    LATEST_VAGRANT_64="https://dl.bintray.com/mitchellh/vagrant/vagrant_1.5.3_x86_64.deb"
 
     ## Vagrant
     apt-get install -y dpkg virtualbox
