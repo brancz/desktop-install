@@ -32,8 +32,8 @@ function install_selected() {
     echo_bold "install instant messanger"
     apt-get install -q -y irssi
 
-    echo_bold "make sure firefox is installed"
-    apt-get install -q -y firefox
+    echo_bold "install webbrowsers"
+    apt-get install -q -y firefox chromium-browser
 
     echo_bold "install java"
     apt-get install -q -y openjdk-7* icedtea-plugin
