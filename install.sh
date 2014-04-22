@@ -159,6 +159,13 @@ function install_selected() {
     npm install -g karma
     ln -s /usr/bin/nodejs /usr/bin/node &>/dev/null
   fi
+
+  if [[ ${selected_items[@]} =~ "chef" ]]
+  then
+    echo_headline "INSTALLING CHEF CLIENT"
+
+    curl -L https://www.opscode.com/chef/install.sh | sudo bash
+  fi
 }
 
 function usage {
@@ -188,9 +195,9 @@ done
 
 if [ "$silent" = "1" ]; then
   echo_headline "Silent Mode"
-  install_selected "essentials rails ansible vagrant dotfiles fixubuntu heroku-toolbelt nodejs"
+  install_selected "essentials rails ansible vagrant dotfiles fixubuntu heroku-toolbelt nodejs chef"
 else
-  selected_items=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 8 \
+  selected_items=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 9 \
   essentials "Essentials" on \
   rails "Rails" on \
   ansible "Ansible" on \
@@ -198,7 +205,8 @@ else
   dotfiles "Vim, Zsh, Dotfiles" on \
   fixubuntu "Fix ubuntu" on \
   heroku-toolbelt "Heroku Toolbelt" on \
-  nodejs "node.js, npm, karma" on 3>&1 1>&2 2>&3)
+  nodejs "node.js, npm, karma" on \
+  chef "Chef Client" on 3>&1 1>&2 2>&3)
 
   exitstatus=$?
   if [ $exitstatus = 0 ]; then
