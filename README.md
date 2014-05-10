@@ -22,6 +22,8 @@ This includes:
 
 * [nodejs, npm, karma](http://nodejs.org/)
 
+* [chef](https://wiki.opscode.com/display/chef/Home)
+
 Install instructions
 --------------------
 
