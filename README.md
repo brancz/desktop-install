@@ -35,4 +35,8 @@ To use the script in silent mode use this command. (silent mode installs everyth
 
 	wget -qO- https://raw.github.com/flower-pot/desktop-install/master/install.sh | sudo bash -s -- --silent
 
+To only install vim, zsh and dotfiles in silent mode use the following command
+
+	wget -qO- https://raw.github.com/flower-pot/desktop-install/master/install.sh | sudo bash -s -- --silent --dotfiles
+
 That's it, have fun! :)

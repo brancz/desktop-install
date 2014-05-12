@@ -199,7 +199,7 @@ function install_selected() {
 }
 
 function usage {
-  echo "usage: install.sh [[-s | --silent] | [-h | --help]]"
+  echo "usage: install.sh [[-s | --silent] [--dotfiles] | [-h | --help]]"
 }
 
 # Start of program
@@ -216,6 +216,8 @@ while [ "$1" != "" ]; do
   case $1 in
     ( -s | --silent )       silent=1
                             ;;
+    ( --dotfiles )          dotfiles=1
+                            ;;
     ( -h | --help )         usage
                             exit
   esac
@@ -224,7 +226,11 @@ done
 
 if [ "$silent" = "1" ]; then
   echo_headline "Silent Mode"
-  install_selected "essentials rails ansible vagrant dotfiles fixubuntu heroku-toolbelt nodejs chef"
+  if [ "$dotfiles" = "1" ]; then
+    install_dotfiles
+  else
+    install_selected "essentials rails ansible vagrant dotfiles fixubuntu heroku-toolbelt nodejs chef"
+  fi
 else
   selected_items=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 9 \
   essentials "Essentials" on \
