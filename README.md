@@ -1,8 +1,8 @@
 Overview
 ========
 
-This script helps you to install or upgrade various software on a debian based
-system, preferably ubuntu.
+This script helps you to install and upgrade various software on a ubuntu based
+system.
 
 This includes:
 
