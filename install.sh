@@ -94,13 +94,7 @@ function install_dotfiles() {
   echo_bold "update apt cache"
   apt-get update
 
-  apt-get install -q -y stow zsh libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev mercurial ruby1.9.1 ruby1.9.1-dev git build-essential curl
-
-  hg clone https://vim.googlecode.com/hg/ /tmp/vim
-  (cd /tmp/vim/src; ./configure --with-features=huge --enable-gui=gnome2 --enable-rubyinterp)
-  make -C /tmp/vim/src
-  make -C /tmp/vim/src install
-  rm -rf /tmp/vim
+  apt-get install -q -y zsh ruby1.9.1 ruby1.9.1-dev git-core curl vim-nox
 
   curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sudo -u "${SUDO_USER}" -H sh
   curl -L https://raw.github.com/maksimr/dotfiles/master/gnome-terminal-themes/molokai.sh | sudo -u "${SUDO_USER}" -H sh
@@ -115,7 +109,8 @@ function install_dotfiles() {
   git submodule init
   git submodule update
 
-  stow --target=$homedir vim
+  ln -s "${homedir}/dotfiles/vim/.vim" "${homedir}/.vim"
+  ln -s "${homedir}/dotfiles/vim/.vimrc" "${homedir}/.vimrc"
   )
 
   (
