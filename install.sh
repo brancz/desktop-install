@@ -142,7 +142,6 @@ function install_nodejs() {
   apt-get update -q -y
   apt-get install nodejs -q -y
   apt-get install npm -q -y
-  npm install -g karma
   ln -s /usr/bin/nodejs /usr/bin/node &>/dev/null
 }
 
@@ -235,7 +234,7 @@ else
   dotfiles "Vim, Zsh, Dotfiles" on \
   fixubuntu "Fix ubuntu" on \
   heroku-toolbelt "Heroku Toolbelt" on \
-  nodejs "node.js, npm, karma" on \
+  nodejs "node.js, npm" on \
   chef "Chef Client" on 3>&1 1>&2 2>&3)
 
   exitstatus=$?
