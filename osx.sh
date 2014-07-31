@@ -7,7 +7,7 @@ fi
 
 homedir=`eval echo ~$SUDO_USER`
 
-echo "INSTALLING ZSH, AND DOTFILES"
+echo "INSTALLING VIM, ZSH, AND DOTFILES"
 
 echo "Check if homebrew is installed"
 which -s brew
@@ -31,5 +31,20 @@ rm "${homedir}/.zshrc"
 sudo -u "${SUDO_USER}" -H git clone https://github.com/flower-pot/dotfiles.git "${homedir}/dotfiles"
 ln -s "${homedir}/dotfiles/zsh/flopska.zsh-theme" "${homedir}/.oh-my-zsh/themes/flopska.zsh-theme"
 ln -s "${homedir}/dotfiles/zsh/zshrc" "${homedir}/.zshrc"
+
+(
+cd ${homedir}/dotfiles
+git submodule init
+git submodule update
+
+ln -s "${homedir}/dotfiles/vim/.vim" "${homedir}/.vim"
+ln -s "${homedir}/dotfiles/vim/.vimrc" "${homedir}/.vimrc"
+)
+
+(
+cd ${homedir}/.vim/bundle/command-t/ruby/command-t/
+sudo ruby extconf.rb
+sudo make
+)
 
 chsh $SUDO_USER -s /bin/zsh
