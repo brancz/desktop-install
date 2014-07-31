@@ -22,7 +22,7 @@ else
     brew update
 fi
 
-brew install zsh git
+brew install zsh git vim
 
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sudo -u "${SUDO_USER}" -H sh
 curl -L https://raw.github.com/maksimr/dotfiles/master/gnome-terminal-themes/molokai.sh | sudo -u "${SUDO_USER}" -H sh
