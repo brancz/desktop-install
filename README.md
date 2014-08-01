@@ -47,6 +47,8 @@ Right now I have only converted the zsh, vim, dotfiles part to osx. Here's how y
 
 	curl https://raw.githubusercontent.com/flower-pot/desktop-install/master/osx.sh | sudo bash -s
 
+To install the monokai theme in your terminal download this file, open to install and set as default colorscheme.
 
+https://raw.githubusercontent.com/stephenway/monokai.terminal/master/Monokai.terminal
 
 That's it, have fun! :)
