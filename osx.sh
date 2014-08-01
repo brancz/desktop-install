@@ -33,7 +33,7 @@ ln -s "${homedir}/dotfiles/zsh/flopska.zsh-theme" "${homedir}/.oh-my-zsh/themes/
 ln -s "${homedir}/dotfiles/zsh/zshrc" "${homedir}/.zshrc"
 
 (
-cd ${homedir}/dotfiles
+cd "${homedir}/dotfiles"
 git submodule init
 git submodule update
 
@@ -42,9 +42,9 @@ ln -s "${homedir}/dotfiles/vim/.vimrc" "${homedir}/.vimrc"
 )
 
 (
-cd ${homedir}/.vim/bundle/command-t/ruby/command-t/
+cd "${homedir}/.vim/bundle/command-t/ruby/command-t/"
 sudo ruby extconf.rb
 sudo make
 )
 
-chsh $SUDO_USER -s /bin/zsh
+chsh -s /bin/zsh "${SUDO_USER}"
