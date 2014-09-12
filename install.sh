@@ -137,12 +137,8 @@ function install_heroku_toolbelt() {
 function install_nodejs() {
   echo_headline "INSTALLING NODE.JS"
 
-  apt-get install python-software-properties
-  apt-add-repository -y ppa:chris-lea/node.js
-  apt-get update -q -y
-  apt-get install nodejs -q -y
-  apt-get install npm -q -y
-  ln -s /usr/bin/nodejs /usr/bin/node &>/dev/null
+  curl -sL https://deb.nodesource.com/setup | sudo bash -
+  sudo apt-get install nodejs
 }
 
 function install_chef() {
