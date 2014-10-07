@@ -141,12 +141,6 @@ function install_nodejs() {
   sudo apt-get install nodejs
 }
 
-function install_chef() {
-  echo_headline "INSTALLING CHEF CLIENT"
-
-  curl -L https://www.opscode.com/chef/install.sh | sudo bash
-}
-
 function install_selected() {
 
   selected_items=$1
@@ -182,10 +176,6 @@ function install_selected() {
   if [[ ${selected_items[@]} =~ "nodejs" ]]; then
     install_nodejs
   fi
-
-  if [[ ${selected_items[@]} =~ "chef" ]]; then
-    install_chef
-  fi
 }
 
 function usage {
@@ -219,7 +209,7 @@ if [ "$silent" = "1" ]; then
   if [ "$dotfiles" = "1" ]; then
     install_dotfiles
   else
-    install_selected "essentials rails ansible vagrant dotfiles fixubuntu heroku-toolbelt nodejs chef"
+    install_selected "essentials rails ansible vagrant dotfiles fixubuntu heroku-toolbelt nodejs"
   fi
 else
   selected_items=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 9 \
@@ -230,8 +220,7 @@ else
   dotfiles "Vim, Zsh, Dotfiles" on \
   fixubuntu "Fix ubuntu" on \
   heroku-toolbelt "Heroku Toolbelt" on \
-  nodejs "node.js, npm" on \
-  chef "Chef Client" on 3>&1 1>&2 2>&3)
+  nodejs "node.js, npm" on 3>&1 1>&2 2>&3)
 
   exitstatus=$?
   if [ $exitstatus = 0 ]; then
