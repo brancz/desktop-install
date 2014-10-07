@@ -10,9 +10,9 @@ This includes:
 
 * [Ruby + Ruby on Rails via rvm](http://rvm.io/)
 
-* [Ansible](http://www.ansible.com/)
-
 * [Vagrant](http://www.vagrantup.com/)
+
+* [SaltStack](http://www.saltstack.com/)
 
 * [My dotfiles](https://github.com/FlopsKa/dotfiles)
 
@@ -21,8 +21,6 @@ This includes:
 * [heroku-toolbelt](https://toolbelt.heroku.com/debian)
 
 * [nodejs, npm, karma](http://nodejs.org/)
-
-* [chef](https://wiki.opscode.com/display/chef/Home)
 
 Install instructions
 --------------------
