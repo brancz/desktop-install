@@ -57,19 +57,6 @@ function install_rails() {
   su -l "${SUDO_USER}" -c "source \"${homedir}/.rvm/scripts/rvm\""
 }
 
-function install_ansible() {
-  echo_headline "INSTALLING ANSIBLE"
-
-  echo_bold "add required repository"
-  add-apt-repository -y ppa:rquillo/ansible
-
-  echo_bold "update apt cache"
-  apt-get update  -q -y
-
-  echo_bold "install ansible"
-  apt-get install -q -y ansible
-}
-
 function install_vagrant() {
   echo_headline "INSTALLING VAGRANT"
 
@@ -153,10 +140,6 @@ function install_selected() {
     install_rails
   fi
   
-  if [[ ${selected_items[@]} =~ "ansible" ]]; then
-    install_ansible
-  fi
-  
   if [[ ${selected_items[@]} =~ "vagrant" ]]; then
     install_vagrant
   fi
@@ -209,13 +192,12 @@ if [ "$silent" = "1" ]; then
   if [ "$dotfiles" = "1" ]; then
     install_dotfiles
   else
-    install_selected "essentials rails ansible vagrant dotfiles fixubuntu heroku-toolbelt nodejs"
+    install_selected "essentials rails vagrant dotfiles fixubuntu heroku-toolbelt nodejs"
   fi
 else
   selected_items=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 9 \
   essentials "Essentials" on \
   rails "Rails" on \
-  ansible "Ansible" on \
   vagrant "Vagrant" on \
   dotfiles "Vim, Zsh, Dotfiles" on \
   fixubuntu "Fix ubuntu" on \
