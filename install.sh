@@ -75,6 +75,16 @@ function install_vagrant() {
   rm $FILE
 }
 
+function install_salt() {
+  echo_headline "INSTALLING SALT"
+
+  echo_bold "update apt cache"
+  apt-get update
+  apt-get install -q -y curl
+
+  curl -L https://bootstrap.saltstack.com | sudo sh
+}
+
 function install_dotfiles() {
   echo_headline "INSTALLING VIM, ZSH, AND DOTFILES"
 
@@ -143,6 +153,10 @@ function install_selected() {
   if [[ ${selected_items[@]} =~ "vagrant" ]]; then
     install_vagrant
   fi
+  
+  if [[ ${selected_items[@]} =~ "salt" ]]; then
+    install_salt
+  fi
 
   if [[ ${selected_items[@]} =~ "dotfiles" ]]; then
     install_dotfiles
@@ -192,7 +206,7 @@ if [ "$silent" = "1" ]; then
   if [ "$dotfiles" = "1" ]; then
     install_dotfiles
   else
-    install_selected "essentials rails vagrant dotfiles fixubuntu heroku-toolbelt nodejs"
+    install_selected "essentials rails vagrant salt dotfiles fixubuntu heroku-toolbelt nodejs"
   fi
 else
   selected_items=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 9 \
