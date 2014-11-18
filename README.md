@@ -10,17 +10,19 @@ This includes:
 
 * [Ruby + Ruby on Rails via rvm](http://rvm.io/)
 
+* [Docker](https://www.docker.com/) & [Fig](http://www.fig.sh/)
+
 * [Vagrant](http://www.vagrantup.com/)
 
 * [SaltStack](http://www.saltstack.com/)
 
-* [My dotfiles](https://github.com/flower-pot/dotfiles)
+* [My dotfiles (zsh, vim, etc.)](https://github.com/flower-pot/dotfiles)
 
 * [fixubuntu](https://github.com/micahflee/fixubuntu)
 
 * [heroku-toolbelt](https://toolbelt.heroku.com/debian)
 
-* [nodejs & npm](http://nodejs.org/)
+* [nodejs](http://nodejs.org/) & [npm](https://www.npmjs.org/)
 
 Install instructions
 --------------------

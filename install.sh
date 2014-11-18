@@ -54,6 +54,14 @@ function install_rails() {
   su -l "${SUDO_USER}" -c "source \"${homedir}/.rvm/scripts/rvm\""
 }
 
+function install_docker() {
+  echo_headline "INSTALLING DOCKER AND FIG"
+
+  apt-get update
+  apt-get install -q -y docker.io curl
+  curl -L https://github.com/docker/fig/releases/download/1.0.1/fig-`uname -s`-`uname -m` > /usr/local/bin/fig; chmod +x /usr/local/bin/fig
+}
+
 function install_vagrant() {
   echo_headline "INSTALLING VAGRANT"
 
@@ -147,6 +155,10 @@ function install_selected() {
     install_rails
   fi
   
+  if [[ ${selected_items[@]} =~ "docker" ]]; then
+    install_docker
+  fi
+  
   if [[ ${selected_items[@]} =~ "vagrant" ]]; then
     install_vagrant
   fi
@@ -203,13 +215,14 @@ if [ "$silent" = "1" ]; then
   if [ "$dotfiles" = "1" ]; then
     install_dotfiles
   else
-    install_selected "essentials rails vagrant salt dotfiles fixubuntu heroku-toolbelt nodejs"
+    install_selected "essentials rails vagrant docker salt dotfiles fixubuntu heroku-toolbelt nodejs"
   fi
 else
   selected_items=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 9 \
   essentials "Essentials" on \
   rails "Rails" on \
   vagrant "Vagrant" on \
+  docker "Docker" on \
   dotfiles "Vim, Zsh, Dotfiles" on \
   fixubuntu "Fix ubuntu" on \
   heroku-toolbelt "Heroku Toolbelt" on \
