@@ -14,13 +14,13 @@ This includes:
 
 * [SaltStack](http://www.saltstack.com/)
 
-* [My dotfiles](https://github.com/FlopsKa/dotfiles)
+* [My dotfiles](https://github.com/flower-pot/dotfiles)
 
 * [fixubuntu](https://github.com/micahflee/fixubuntu)
 
 * [heroku-toolbelt](https://toolbelt.heroku.com/debian)
 
-* [nodejs, npm, karma](http://nodejs.org/)
+* [nodejs & npm](http://nodejs.org/)
 
 Install instructions
 --------------------

@@ -22,10 +22,7 @@ function install_essentials() {
   apt-get update
 
   echo_bold "install basic stuff"
-  apt-get install -q -y build-essential checkinstall curl git xclip tree gparted nfs-common portmap pavucontrol screen
-
-  echo_bold "install network manager vpn plugins"
-  apt-get install -q -y network-manager-openvpn network-manager-pptp network-manager-vpnc
+  apt-get install -q -y build-essential checkinstall curl git xclip tree gparted screen
 
   echo_bold "install instant messanger"
   apt-get install -q -y irssi
