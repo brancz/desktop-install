@@ -16,7 +16,7 @@ This includes:
 
 * [SaltStack](http://www.saltstack.com/)
 
-* [My dotfiles](https://github.com/flower-pot/dotfiles) ([zsh](http://zsh.sourceforge.net/), [Vim](http://www.vim.org/), & more)]
+* [My dotfiles](https://github.com/flower-pot/dotfiles) ([zsh](http://zsh.sourceforge.net/), [Vim](http://www.vim.org/), & more)
 
 * [fixubuntu](https://github.com/micahflee/fixubuntu)
 
