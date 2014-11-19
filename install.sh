@@ -46,11 +46,12 @@ function install_essentials() {
   apt-get install -q -y keepassx
 }
 
-function install_rails() {
-  echo_headline "INSTALLING RAILS"
+function install_ruby() {
+  echo_headline "INSTALLING RUBY"
 
-  apt-get -y install gawk libgdbm-dev pkg-config libffi-dev build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf libc6-dev libncurses5-dev automake libtool bison subversion python postgresql postgresql-contrib libpq-dev redis-server
-  curl -L https://get.rvm.io | sudo -u "${SUDO_USER}" -H bash -s stable --rails
+  apt-get -y install curl
+  su -l "${SUDO_USER}" -c "gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3"
+  curl -L https://get.rvm.io | sudo -u "${SUDO_USER}" -H bash -s stable --ruby
   su -l "${SUDO_USER}" -c "source \"${homedir}/.rvm/scripts/rvm\""
 }
 
@@ -151,8 +152,8 @@ function install_selected() {
     install_essentials
   fi
   
-  if [[ ${selected_items[@]} =~ "rails" ]]; then
-    install_rails
+  if [[ ${selected_items[@]} =~ "ruby" ]]; then
+    install_ruby
   fi
   
   if [[ ${selected_items[@]} =~ "docker" ]]; then
@@ -215,18 +216,18 @@ if [ "$silent" = "1" ]; then
   if [ "$dotfiles" = "1" ]; then
     install_dotfiles
   else
-    install_selected "essentials rails vagrant docker salt dotfiles fixubuntu heroku-toolbelt nodejs"
+    install_selected "essentials ruby vagrant docker salt dotfiles fixubuntu heroku-toolbelt nodejs"
   fi
 else
   selected_items=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 9 \
   essentials "Essentials" on \
-  rails "Rails" on \
+  ruby "Ruby via rvm" on \
   vagrant "Vagrant" on \
-  docker "Docker" on \
-  dotfiles "Vim, Zsh, Dotfiles" on \
-  fixubuntu "Fix ubuntu" on \
-  heroku-toolbelt "Heroku Toolbelt" on \
-  nodejs "node.js, npm" on 3>&1 1>&2 2>&3)
+  docker "Docker & Fig" on \
+  dotfiles "Vim, zsh, dotfiles" on \
+  fixubuntu "fix ubuntu" on \
+  heroku-toolbelt "heroku toolbelt" on \
+  nodejs "Node.js & npm" on 3>&1 1>&2 2>&3)
 
   exitstatus=$?
   if [ $exitstatus = 0 ]; then
