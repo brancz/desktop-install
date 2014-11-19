@@ -8,7 +8,7 @@ This includes:
 
 * Essential software (firefox, curl, git, vpn, java, musicplayer, etc)
 
-* [Ruby + Ruby on Rails via rvm](http://rvm.io/)
+* [Ruby](https://www.ruby-lang.org/) via [rvm](http://rvm.io/)
 
 * [Docker](https://www.docker.com/) & [Fig](http://www.fig.sh/)
 
@@ -16,13 +16,15 @@ This includes:
 
 * [SaltStack](http://www.saltstack.com/)
 
-* [My dotfiles (zsh, vim, etc.)](https://github.com/flower-pot/dotfiles)
+* [My dotfiles](https://github.com/flower-pot/dotfiles) ([zsh](http://zsh.sourceforge.net/), [Vim](http://www.vim.org/), & more)]
 
 * [fixubuntu](https://github.com/micahflee/fixubuntu)
 
 * [heroku-toolbelt](https://toolbelt.heroku.com/debian)
 
 * [nodejs](http://nodejs.org/) & [npm](https://www.npmjs.org/)
+
+![Screenshot](https://raw.githubusercontent.com/flower-pot/desktop-install/master/screenshot.png)
 
 Install instructions
 --------------------
