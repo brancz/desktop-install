@@ -66,8 +66,8 @@ function install_docker() {
 function install_vagrant() {
   echo_headline "INSTALLING VAGRANT"
 
-  LATEST_VAGRANT_32="https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_i686.deb"
-  LATEST_VAGRANT_64="https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_x86_64.deb"
+  LATEST_VAGRANT_32="https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_i686.deb"
+  LATEST_VAGRANT_64="https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb"
 
   ## Vagrant
   apt-get install -y dpkg virtualbox
