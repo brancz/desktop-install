@@ -49,7 +49,7 @@ function install_essentials() {
 function install_ruby() {
   echo_headline "INSTALLING RUBY"
 
-  apt-get -y install curl
+  apt-get -q -y install curl
   su -l "${SUDO_USER}" -c "gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3"
   curl -L https://get.rvm.io | sudo -u "${SUDO_USER}" -H bash -s stable --ruby
   su -l "${SUDO_USER}" -c "source \"${homedir}/.rvm/scripts/rvm\""
@@ -70,7 +70,7 @@ function install_vagrant() {
   LATEST_VAGRANT_64="https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb"
 
   ## Vagrant
-  apt-get install -y dpkg virtualbox
+  apt-get install -q -y dpkg virtualbox
   URL="$LATEST_VAGRANT_64"
   ARCHITECTURE=`uname -m`
   if [ "$ARCHITECTURE" != "x86_64" ]; then
@@ -141,7 +141,7 @@ function install_nodejs() {
   echo_headline "INSTALLING NODE.JS"
 
   curl -sL https://deb.nodesource.com/setup | sudo bash -
-  sudo apt-get install nodejs
+  sudo apt-get -q -y install nodejs
 }
 
 function install_selected() {
