@@ -10,7 +10,7 @@ This includes:
 
 * [Ruby](https://www.ruby-lang.org/) via [rvm](http://rvm.io/)
 
-* [Docker](https://www.docker.com/) & [Fig](http://www.fig.sh/)
+* [Docker](https://www.docker.com/) & [Docker-Compose](https://docs.docker.com/compose/)
 
 * [Vagrant](http://www.vagrantup.com/)
 

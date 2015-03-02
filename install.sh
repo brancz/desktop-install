@@ -56,11 +56,14 @@ function install_ruby() {
 }
 
 function install_docker() {
-  echo_headline "INSTALLING DOCKER AND FIG"
+  echo_headline "INSTALLING DOCKER AND DOCKER-COMPOSE"
 
+  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
+  sh -c "echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
   apt-get update
-  apt-get install -q -y docker.io curl
-  curl -L https://github.com/docker/fig/releases/download/1.0.1/fig-`uname -s`-`uname -m` > /usr/local/bin/fig; chmod +x /usr/local/bin/fig
+  apt-get install lxc-docker
+  curl -L https://github.com/docker/compose/releases/download/1.1.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+  chmod +x /usr/local/bin/docker-compose
 }
 
 function install_vagrant() {
@@ -223,7 +226,7 @@ else
   essentials "Essentials" on \
   ruby "Ruby via rvm" on \
   vagrant "Vagrant" on \
-  docker "Docker & Fig" on \
+  docker "Docker & Docker-Compose" on \
   dotfiles "Vim, zsh, dotfiles" on \
   fixubuntu "fix ubuntu" on \
   heroku-toolbelt "heroku toolbelt" on \
