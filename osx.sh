@@ -15,7 +15,7 @@ if [[ $? != 0 ]] ; then
     # Install Homebrew
     # https://github.com/mxcl/homebrew/wiki/installation
     echo "Homebrew is not installed, I will take care of that"
-    su -l "${SUDO_USER}" -c "curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install | ruby"
+    su -l "${SUDO_USER}" -c "ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
 else
     brew update
 fi
