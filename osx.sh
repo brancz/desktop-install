@@ -26,7 +26,7 @@ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | 
 
 rm "${homedir}/.zshrc"
 sudo -u "${SUDO_USER}" -H git clone https://github.com/flower-pot/dotfiles.git "${homedir}/dotfiles"
-ln -s "${homedir}/dotfiles/zsh/flopska.zsh-theme" "${homedir}/.oh-my-zsh/themes/flopska.zsh-theme"
+ln -s "${homedir}/dotfiles/zsh/flower-pot.zsh-theme" "${homedir}/.oh-my-zsh/themes/flower-pot.zsh-theme"
 ln -s "${homedir}/dotfiles/zsh/zshrc" "${homedir}/.zshrc"
 
 (
