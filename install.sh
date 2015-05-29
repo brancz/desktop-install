@@ -128,12 +128,6 @@ function install_dotfiles() {
   chsh $SUDO_USER -s /bin/zsh
 }
 
-function install_fixubuntu() {
-  echo_headline "FIXING UBUNTU"
-
-  wget -qO- https://raw2.github.com/micahflee/fixubuntu/master/fixubuntu.sh | sudo -u "${SUDO_USER}" -H sh
-}
-
 function install_heroku_toolbelt() {
   echo_headline "INSTALLING HEROKU-TOOLBELT"
 
@@ -173,10 +167,6 @@ function install_selected() {
 
   if [[ ${selected_items[@]} =~ "dotfiles" ]]; then
     install_dotfiles
-  fi
-
-  if [[ ${selected_items[@]} =~ "fixubuntu" ]]; then
-    install_fixubuntu
   fi
 
   if [[ ${selected_items[@]} =~ "heroku-toolbelt" ]]; then
@@ -219,7 +209,7 @@ if [ "$silent" = "1" ]; then
   if [ "$dotfiles" = "1" ]; then
     install_dotfiles
   else
-    install_selected "essentials ruby vagrant docker salt dotfiles fixubuntu heroku-toolbelt nodejs"
+    install_selected "essentials ruby vagrant docker salt dotfiles heroku-toolbelt nodejs"
   fi
 else
   selected_items=$(whiptail --separate-output --checklist "What do you want to install?" 15 60 9 \
@@ -228,7 +218,6 @@ else
   vagrant "Vagrant" on \
   docker "Docker & Docker-Compose" on \
   dotfiles "Vim, zsh, dotfiles" on \
-  fixubuntu "fix ubuntu" on \
   heroku-toolbelt "heroku toolbelt" on \
   nodejs "Node.js & npm" on 3>&1 1>&2 2>&3)
 
