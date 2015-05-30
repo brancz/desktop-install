@@ -18,8 +18,6 @@ This includes:
 
 * [My dotfiles](https://github.com/flower-pot/dotfiles) ([zsh](http://zsh.sourceforge.net/), [Vim](http://www.vim.org/), & more)
 
-* [fixubuntu](https://github.com/micahflee/fixubuntu)
-
 * [heroku-toolbelt](https://toolbelt.heroku.com/debian)
 
 * [nodejs](http://nodejs.org/) & [npm](https://www.npmjs.org/)
