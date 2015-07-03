@@ -119,12 +119,6 @@ function install_dotfiles() {
   ln -s "${homedir}/dotfiles/vim/.vimrc" "${homedir}/.vimrc"
   )
 
-  (
-  cd ${homedir}/.vim/bundle/command-t/ruby/command-t/
-  sudo ruby extconf.rb
-  sudo make
-  )
-
   chsh $SUDO_USER -s /bin/zsh
 }
 
